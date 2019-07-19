@@ -69,7 +69,6 @@ class Server {
         $context = stream_context_create($opts);
         $read_buffer = 4096;
         $buffer = fopen($path, 'rb', false, $context);
-        $sum_buffer=0;
         $contend = $http_response_header[3];
         // var_dump($contend);
         // preg_match_all('#Content-Length:(.*?)#',$contend,$out,PREG_SET_ORDER);
@@ -86,7 +85,7 @@ class Server {
         // $filesize=filesize($path);
         // var_dump($http_response_header);
         while(!feof($buffer)) {
-            echo fgets($buffer, 4096);
+            echo fgets($buffer, $read_buffer);
         }
 
         // while (!feof($hostfile)) {
